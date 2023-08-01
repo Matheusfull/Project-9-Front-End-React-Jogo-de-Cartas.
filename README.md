@@ -53,9 +53,9 @@
 
   1. Clone o repositório
 
-  - Use o comando: `git clone git@github.com:Matheusfull/Project-9-Front-end-Tryunfo.git`.
+  - Use o comando: `git clone git@github.com:Matheusfull/Project-9-Front-End-React-Jogo-de-Cartas..git`.
   - Entre na pasta do repositório que você acabou de clonar:
-    - `cd Project-9-Front-end-Tryunfo`
+    - `cd Project-9-Front-End-React-Jogo-de-Cartas.`
 
   2. Instale as dependências
 
