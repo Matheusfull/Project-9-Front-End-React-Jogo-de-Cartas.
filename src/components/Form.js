@@ -24,81 +24,94 @@ class Form extends React.Component {
     Hoje com mais experiência vejo que dessa forma nunca iria pegar mesmo porque o estado vem por props, sendo pego por this.props e não this.props.state. Sim, eu estava aprendendo kkkk
     */
     return (
-      <div>
+      <div className="box-form">
         <form className="form">
-          <label htmlFor="name">
-            Nome:
-            <input
-              type="text"
-              data-testid="name-input"
-              id="name"
-              value={ cardName }
-              onChange={ onInputChange }
-              name="name"
-            />
-          </label>
-          <label htmlFor="descricao">
-            Descrição:
-            <textarea
-              type="textarea"
-              data-testid="description-input"
-              id="descricao"
-              value={ cardDescription }
-              onChange={ onInputChange }
-              name="descricao"
-            />
-          </label>
-          <label htmlFor="Attr01">
-            Attr01:
-            <input
-              type="number"
-              max={ 90 }
-              min={ 0 }
-              data-testid="attr1-input"
-              id="Attr01"
-              value={ cardAttr1 }
-              onChange={ onInputChange }
-              name="Attr01"
-            />
-          </label>
-          <label htmlFor="Attr02">
-            Attr02:
-            <input
-              type="number"
-              max={ 90 }
-              min={ 0 }
-              data-testid="attr2-input"
-              id="Attr02"
-              value={ cardAttr2 }
-              onChange={ onInputChange }
-              name="Attr02"
-            />
-          </label>
-          <label htmlFor="Attr03">
-            Attr03:
-            <input
-              type="number"
-              max={ 90 }
-              min={ 0 }
-              data-testid="attr3-input"
-              id="Attr03"
-              value={ cardAttr3 }
-              onChange={ onInputChange }
-              name="Attr03"
-            />
-          </label>
-          <label htmlFor="image">
-            Imagem:
-            <input
-              type="text"
-              data-testid="image-input"
-              id="image"
-              value={ cardImage }
-              onChange={ onInputChange }
-              name="image"
-            />
-          </label>
-          <label htmlFor="raridade">
+          <div className="input-box">
+            <label htmlFor="name">
+              Nome:
+              <input
+                type="text"
+                data-testid="name-input"
+                id="name"
+                value={ cardName }
+                onChange={ onInputChange }
+                name="name"
+              />
+            </label>
+          </div>
+          <div className="input-box">
+            <label htmlFor="descricao">
+              Descrição:
+              <textarea
+                type="textarea"
+                data-testid="description-input"
+                id="descricao"
+                value={ cardDescription }
+                onChange={ onInputChange }
+                name="descricao"
+              />
+            </label>
+          </div>
+          <div className="input-box">
+            <label htmlFor="Attr01">
+              Attr01:
+              <input
+                type="number"
+                max={ 90 }
+                min={ 0 }
+                data-testid="attr1-input"
+                id="Attr01"
+                value={ cardAttr1 }
+                onChange={ onInputChange }
+                name="Attr01"
+              />
+            </label>
+          </div>
+          <div className="input-box">
+            <label htmlFor="Attr02">
+              Attr02:
+              <input
+                type="number"
+                max={ 90 }
+                min={ 0 }
+                data-testid="attr2-input"
+                id="Attr02"
+                value={ cardAttr2 }
+                onChange={ onInputChange }
+                name="Attr02"
+              />
+            </label>
+          </div>
+          <div className="input-box">
+            <label htmlFor="Attr03">
+              Attr03:
+              <input
+                type="number"
+                max={ 90 }
+                min={ 0 }
+                data-testid="attr3-input"
+                id="Attr03"
+                value={ cardAttr3 }
+                onChange={ onInputChange }
+                name="Attr03"
+              />
+            </label>
+          </div>
+          <div className="input-box">
+            <label htmlFor="image">
+              Imagem:
+              <input
+                type="text"
+                data-testid="image-input"
+                id="image"
+                value={ cardImage }
+                onChange={ onInputChange }
+                name="image"
+              />
+            </label>
+          </div>
+          <div className="input-box">
+
             Raridade:
             <select
               id="raridade"
@@ -111,55 +124,40 @@ class Form extends React.Component {
               <option>raro</option>
               <option>muito raro</option>
             </select>
-          </label>
-          <label htmlFor="trunfo">
-            {/* <input
-              type="checkbox"
-              id="trunfo"
-              data-testid="trunfo-input"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-              name="trunfo"
-            /> */}
-            {/*  {
-              hasTrunfo ? <input
-                type="checkbox"
-                id="trunfo"
-                data-testid="trunfo-input"
-                checked={ cardTrunfo }
-                onChange={ onInputChange }
-                name="trunfo"
-              /> : <p>Você já tem um Super Trunfo em seu baralho</p>
-            } */}
-            {/* {console.log(hasTrunfo)} */}
-            {
-              hasTrunfo ? (
-                <p>Você já tem um Super Trunfo em seu baralho</p>
-              ) : (
-                <label htmlFor="checkbox" className="checkbox">
-                  Escolher como Trunfo
-                  <input
-                    type="checkbox"
-                    id="trunfo"
-                    data-testid="trunfo-input"
-                    checked={ cardTrunfo }
-                    onChange={ onInputChange }
-                    name="trunfo"
-                  />
-                </label>
-              )
-            }
-          </label>
 
-          <button
-            type="submit"
-            id="button"
-            data-testid="save-button"
-            disabled={ isSaveButtonDisabled }
-            onClick={ onSaveButtonClick }
-          >
-            Salvar
-          </button>
+          </div>
+          <div className="input-box">
+            <label htmlFor="trunfo">
+              {
+                hasTrunfo ? (
+                  <p>Você já tem um Super Trunfo em seu baralho</p>
+                ) : (
+                  <label htmlFor="checkbox" className="checkbox">
+                    Escolher como Trunfo
+                    <input
+                      type="checkbox"
+                      id="trunfo"
+                      data-testid="trunfo-input"
+                      checked={ cardTrunfo }
+                      onChange={ onInputChange }
+                      name="trunfo"
+                    />
+                  </label>
+                )
+              }
+            </label>
+          </div>
+          <div>
+            <button
+              type="submit"
+              id="button"
+              data-testid="save-button"
+              disabled={ isSaveButtonDisabled }
+              onClick={ onSaveButtonClick }
+            >
+              Salvar
+            </button>
+          </div>
         </form>
       </div>
     );

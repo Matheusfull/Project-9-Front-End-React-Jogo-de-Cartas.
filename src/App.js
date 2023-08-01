@@ -20,38 +20,9 @@ class App extends React.Component {
     };
   }
 
-  onSaveButtonClick = (event) => {
-    event.preventDefault();
-    const { name,
-      descricao,
-      Attr01,
-      Attr02,
-      Attr03,
-      image,
-      raridade,
-      trunfo } = this.state;
-
-    this.setState((prevState) => ({
-      name: '',
-      descricao: '',
-      Attr01: '0',
-      Attr02: '0',
-      Attr03: '0',
-      image: '',
-      raridade: 'normal',
-      trunfo: false,
-      cartas: [...prevState.cartas, { name,
-        descricao,
-        Attr01,
-        Attr02,
-        Attr03,
-        image,
-        raridade,
-        trunfo }],
-    }), () => this.superTrunfo());
-  }
-
+  // handleCahnge - nome certo desta função
   handle = ({ target }) => {
+    // console.log(target); pega o elemento html completo
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
@@ -89,6 +60,37 @@ class App extends React.Component {
     return false;
   }
 
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    const { name,
+      descricao,
+      Attr01,
+      Attr02,
+      Attr03,
+      image,
+      raridade,
+      trunfo } = this.state;
+
+    this.setState((prevState) => ({
+      cartas: [...prevState.cartas, { name,
+        descricao,
+        Attr01,
+        Attr02,
+        Attr03,
+        image,
+        raridade,
+        trunfo }],
+      name: '',
+      descricao: '',
+      Attr01: '0',
+      Attr02: '0',
+      Attr03: '0',
+      image: '',
+      raridade: 'normal',
+      trunfo: false,
+    }), () => this.superTrunfo());
+  }
+
     superTrunfo = () => {
       const { cartas } = this.state;
       const verifyCard = cartas.some((card) => card.trunfo === true);
@@ -98,12 +100,10 @@ class App extends React.Component {
     }
 
     onDeleteButtonClick= (cardName, cardTrunfo) => {
-      console.log(cardName);
       const { cartas } = this.state;
       this.setState({
         cartas: cartas.filter((card) => card.name !== cardName),
       });
-      // console.log(cartas);
       if (cardTrunfo) {
         this.setState({
           hasTrunfo: false,
@@ -124,51 +124,59 @@ class App extends React.Component {
         cartas,
       } = this.state;
       return (
-        <div>
-          <h1 className="title">Tryunfo</h1>
-          <Form
-            cardName={ name }
-            cardDescription={ descricao }
-            cardAttr1={ Attr01 }
-            cardAttr2={ Attr02 }
-            cardAttr3={ Attr03 }
-            cardImage={ image }
-            cardRare={ raridade }
-            cardTrunfo={ trunfo }
-            hasTrunfo={ hasTrunfo }
-            onInputChange={ this.handle }
-            /* isSaveButtonDisabled={ button } */
-            isSaveButtonDisabled={ this.isSaveButtonDisabled() }
-            onSaveButtonClick={ this.onSaveButtonClick }
-          />
-          <Card
-            cardName={ name }
-            cardDescription={ descricao }
-            cardAttr1={ Attr01 }
-            cardAttr2={ Attr02 }
-            cardAttr3={ Attr03 }
-            cardImage={ image }
-            cardRare={ raridade }
-            cardTrunfo={ trunfo }
-            excluir={ false }
-          />
-          {
-            cartas.map((card) => (
-              <Card
-                key={ card.name }
-                cardName={ card.name }
-                cardDescription={ card.descricao }
-                cardAttr1={ card.Attr01 }
-                cardAttr2={ card.Attr02 }
-                cardAttr3={ card.Attr03 }
-                cardImage={ card.image }
-                cardRare={ card.raridade }
-                cardTrunfo={ card.trunfo }
-                excluir
-                onDeleteButtonClick={ this.onDeleteButtonClick }
+        <div className="container">
+          <div className="main">
+            <div className="div-form">
+              <h1 className="title">Tryunfo</h1>
+              <Form
+                cardName={ name }
+                cardDescription={ descricao }
+                cardAttr1={ Attr01 }
+                cardAttr2={ Attr02 }
+                cardAttr3={ Attr03 }
+                cardImage={ image }
+                cardRare={ raridade }
+                cardTrunfo={ trunfo }
+                onInputChange={ this.handle }
+                isSaveButtonDisabled={ this.isSaveButtonDisabled() }
+                onSaveButtonClick={ this.onSaveButtonClick }
+                hasTrunfo={ hasTrunfo }
+                /* isSaveButtonDisabled={ button } */
               />
-            ))
-          }
+            </div>
+            <div className="div-preview">
+              <Card
+                cardName={ name }
+                cardDescription={ descricao }
+                cardAttr1={ Attr01 }
+                cardAttr2={ Attr02 }
+                cardAttr3={ Attr03 }
+                cardImage={ image }
+                cardRare={ raridade }
+                cardTrunfo={ trunfo }
+                excluir={ false }
+              />
+            </div>
+          </div>
+          <div className="cards">
+            {
+              cartas.map((card) => (
+                <Card
+                  key={ card.name }
+                  cardName={ card.name }
+                  cardDescription={ card.descricao }
+                  cardAttr1={ card.Attr01 }
+                  cardAttr2={ card.Attr02 }
+                  cardAttr3={ card.Attr03 }
+                  cardImage={ card.image }
+                  cardRare={ card.raridade }
+                  cardTrunfo={ card.trunfo }
+                  excluir // aqui passa como props e já se torna true, automaticamente
+                  onDeleteButtonClick={ this.onDeleteButtonClick }
+                />
+              ))
+            }
+          </div>
         </div>
       );
     }
